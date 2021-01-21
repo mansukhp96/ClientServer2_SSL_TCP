@@ -25,8 +25,13 @@ while True:
         print p[1]
         break
     else:
-        res = eval(str(expr))
-        sts = b'cs5700spring2021 STATUS ' + str(res) + '\n'
-        print(sts)
-        wrappeds.send(sts)
+        try:
+            res = eval(str(expr))
+            sts = b'cs5700spring2021 STATUS ' + str(res) + '\n'
+            print(sts)
+            wrappeds.send(sts)
+        except ZeroDivisionError:
+            err = b'cs5700spring2021 ERR #DIV/0' + '\n'
+            print(err)
+            wrappeds.send(err)
 wrappeds.close()
